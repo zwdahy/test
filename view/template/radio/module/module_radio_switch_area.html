@@ -1,0 +1,30 @@
+{if $from == 1}
+<div class="rdo_tit3">
+	{$radiolistbypid.name}有<em class="num_org">{$radiolistbypid.count}</em>家电台
+</div>
+
+<div class="box_rdols clearFix">
+	<ul class="list_program">
+	{foreach item=aitem key=akey from=$radiolistbypid.list}
+		<li><a href="/{$aitem.province_spell}/{$aitem.domain}?source=radioarea_list" rel="{$aitem.rid}" target="_blank"><span>{if $aitem.isnew}<em class="ico_radio ico_rdNew"></em> {/if}{$aitem.name}-{$aitem.fm}</span></a></li>
+	{/foreach}
+	</ul>
+</div>
+{elseif $from == 0}
+<div class="prm_contList" node-type="radiolist" style="height: 116px;">
+	<ul class="prm_showls prm_showls_pc" node-type="radioul">
+		{foreach item=aitem key=akey from=$radiolistbypid.list}
+		<li {if $aitem.rid == $rid}class="cur"{/if}>
+			<a href="{if $aitem.rid == $rid}javascript:;{else}/{$aitem.province_spell}/{$aitem.domain}?source=radio_change{/if}" rel="{$aitem.rid}">
+				<p class="p_list"><span>{$aitem.name}-{$aitem.fm}{if $aitem.isnew}<em class="ico_radio ico_rdNew"></em>{/if}</span></p>
+			</a>
+		</li>
+		{/foreach}
+	</ul>	
+</div>
+{if $radiolistbypid.count >4}
+<div node-type="scrollBar" class="scrollBar_gr">
+	<span node-type="dragBar" style="top:0px"><em node-type="slid" style="padding-top:{math equation="x / y - z" x=496 y= $radiolistbypid.count z=25}px"></em></span>
+</div>
+{/if}
+{/if}

@@ -1,0 +1,5 @@
+<ul>
+	{foreach item=bitem key=bkey from=$data}
+	<li><a href="{$bitem.userinfo.link_url}" target="_blank"><img action-type="namecard" action-data="uid={$bitem.uid}&param=uid&position=bottom" width="30" height="30" alt="{$bitem.screen_name}" src="{$bitem.userinfo.profile_image_url}"></a></li>
+	{/foreach}
+</ul>

@@ -1,0 +1,314 @@
+{=insert name="radio_globaljs" rid=$rid page_title=$page_title=}
+<!--顶部通知 begin-->
+<div class="notice-wrap">
+    <div class="bg-wrap"></div>
+    <div class="notice" id="notice">
+        <div class="notice-in udv-clearfix">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    requirejs(['lib'],function(){
+        requirejs(['notice','$','_'],function(Notice){
+            $(document).ready(function(){
+                new Notice({
+                    ctr: $("#notice")
+                    //speed: 30 //px per second
+                });
+            });
+        });
+    });
+</script>
+<!--顶部通知 end-->
+<div class="main-play">
+    <div class="wrap list-management" style="padding-top: 90px;">
+        <!--顶部导航 begin-->
+        {=insert name="radio_head" is_login=$cuid=}
+        <!--顶部导航 end-->
+        <div class="player-wrap">
+            <!--<div class="pw-channel">中国国际广播电台轻松调频</div>
+            <div class="program">
+                <div class="time">19:00-22:00 正在播出</div>
+                <div class="p-name">New Music Express</div>
+                <div class="next-p">即将播出《Night Vibe》</div>
+            </div>
+            <div class="p-footer udv-clearfix">
+                <div class="control">
+                    <span class="i-play"></span>
+                    <span class="i-fav"></span>
+                    <span class="i-volume"></span>
+                </div>
+                <div class="pf-anchor">
+                    <dl>
+                        <dt>在线主播</dt>
+                        <dd>
+                            <a href="url" target="_blank">
+                                <img src="http://dummyimage.com/56x56/999999/fff" height="56" width="56" alt="test"/>
+                            </a>
+                            <a href="url" target="_blank">
+                                <img src="http://dummyimage.com/56x56/999999/fff" height="56" width="56" alt="test"/>
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>-->
+            <div id="player"></div>
+            <div style="position: absolute;left: -999em;height: 35px;width: 880px;top: 20px;overflow: hidden;" id="flashBox">
+                <div id="flashWrap"></div>
+            </div>
+
+            <div class="sidebar" id="sidebar">
+                <a class="s-item1" href="javascript:;" data-tab="1"></a>
+                <a class="s-item2" href="javascript:;" data-tab="2"></a>
+                <a class="s-item3" href="javascript:;" data-tab="3"></a>
+                <a class="s-item4" href="javascript:;" data-tab="4"></a>
+            </div>
+            <div class="cover-wrap" id="cover-wrap" style="display: none;">
+                <div class="bg-wrap"></div>
+                <div class="cw-ctr" data-ctr="1" style="/*display: none;*/" data-init="0">
+                    <div class="title udv-clearfix">
+                        <span class="t-name">今日节目单： </span>
+                        <!--<div class="filter">
+                            <a href="javascript:;" class="more">查看更多</a>
+                            <div style="display: none;position: absolute;left: 0;top:48px;">
+                                <ul class="day-select">
+                                    <li data-day="1">周一</li>
+                                    <li data-day="2">周二</li>
+                                    <li data-day="3">周三</li>
+                                    <li data-day="4">周四</li>
+                                    <li data-day="5">周五</li>
+                                    <li data-day="6">周六</li>
+                                    <li data-day="0">周日</li>
+                                </ul>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="cover-list">
+
+                    </div>
+                </div>
+
+                <div class="cw-ctr" data-ctr="2" style="display: none;" data-init="0">
+                    <div class="title udv-clearfix">
+                        <span class="t-name">正在播出的节目： </span>
+                    </div>
+                    <div class="cover-list">
+
+                    </div>
+                </div>
+                <div class="cw-ctr" data-ctr="3" style="display: none;" data-init="0">
+                    <div class="title udv-clearfix">
+                        <span class="t-name">热门电台： </span>
+                    </div>
+                    <div class="cover-list">
+
+                    </div>
+                </div>
+                <div class="cw-ctr" data-ctr="4" style="display: none;" data-init="0">
+                    <div class="title udv-clearfix">
+                        <span class="t-name">我收藏的--个电台 </span>
+                    </div>
+                    <div class="cover-list">
+
+                    </div>
+                </div>
+                <a class="cw-close" href="javascript:;" data-action="close"></a>
+            </div>
+        </div>
+        <script type="text/javascript">
+            requirejs(['lib'],function(){
+                requirejs(['player/sidebar', 'player/player','$'],function(Sidebar, Player){
+                    $(document).ready(function(){
+                        var sidebar=new Sidebar({
+                            tabWrap: $("#sidebar"),
+                            coverWrap: $("#cover-wrap")
+                        });
+                        Player.live({
+                            ctr: $("#player")
+                        });
+                    });
+                });
+            });
+        </script>
+    </div>
+    <div class="wrap col-2-bg udv-clearfix" style="margin-top: 40px;">
+        <div class="col-left">
+		{=if $show=}
+            <div class="saying-wrap">
+                <div class="title">
+                    <div class="title-in">主播正在说</div>
+                </div>
+                
+                <div class="content">
+                    <!--管理页出现 begin-->
+                    <div class="dj-tip">
+                        DJ你好，你在本页面发布微博或通过 <a href="javascript:;" id="addBlog">输入微博链接地址</a> ，即可显示在在线DJ微博区。该区域的微博将会在节目结束时自动消失。
+                    </div>
+                    <!--管理页出现 end-->
+                    <div id="list" style="margin-bottom: 30px;"></div>
+                </div>
+                
+            </div>
+            <script type="text/javascript">
+                requirejs(['lib'],function(){
+                    requirejs(['player/addDJMb','$'],function(Box){
+                        $(document).ready(function(){
+                            var addDJBox=null;
+                            $("#addBlog").on('click', function(){
+                                if(_.isNull(addDJBox)){
+                                    addDJBox=new Box({
+                                        className: 'add-dj-weibo'
+                                    }).render();
+                                }
+                                addDJBox.showAtCenter();
+                            })
+                        });
+                    });
+                    requirejs(['component/feedlist','$'],function(List){
+                        $(document).ready(function(){
+                            var djFeed = new List.DJFeed({
+                                className: 'feedlist feed-type1',
+                                showDel: true
+                            });
+                            $("#list").append(djFeed.el);
+                        });
+                    });
+                });
+            </script>
+			{=/if=}
+            <div id="publisher"></div>
+            <div class="list-switch" id="switch">
+                <div class="tabs">
+                    <span class="selected" data-type="user_feed">听友说</span>
+                    <span data-type="dj_feed">主播说</span>
+                </div>
+                <div data-ctr="ctr"></div>
+            </div>
+            <script type="text/javascript">
+                requirejs(['lib'],function(){
+                    requirejs(['component/feedlist','$'],function(List){
+                        $(document).ready(function(){
+                            List.list1({
+                                ctr: $("#switch")
+                            });
+                        });
+                    });
+                });
+            </script>
+        </div>
+        <div class="col-right">
+            {=if $editprogram==1=}
+            <div class="manage-program">
+                <a href="{=$smarty.const.RADIO_URL=}/editprogram?rid={=$rid=}" target="_blank">管理节目单</a>
+            </div>
+            {=/if=}
+            {=insert name="radio_play_right" dj_info=$dj_info radio_info=$radio_info=}
+        </div>
+    </div>
+	<div class="wrap list-management">
+    <!--返回顶部 begin-->
+    <div class="side-btns" id="side-btns" style="visibility: hidden;bottom: 80px;">
+        <a class="back" href="javascript:;"></a>
+    </div>
+    <div class="side-btns" style="visibility: visible;bottom: 24px;">
+        <a class="recommend" href="javascript:;" data-action="side-share">推荐给朋友</a>
+    </div>
+    <script type="text/javascript">
+        requirejs(['lib'],function(){
+            requirejs(['component/backToTop'],function(){
+                $(document).ready(function(){
+
+                });
+            });
+        });
+    </script>
+    <!--返回顶部 end-->
+</div>
+</div>
+<script type="text/javascript">
+    //页面加关注功能
+    requirejs(['lib'],function(){
+        requirejs(['util/network','$'],function(network){
+            var $body=$("body");
+            $(document).ready(function(){
+                $body.on('click', '[data-action="follow"]',function(e){
+                    var $cTarget=$(e.currentTarget);
+                    network.follow({
+                        uid: $cTarget.attr('data-uid')
+                    }, function(d){
+//                        console.log(d);
+						if(d.code=='A00006')
+                            $cTarget.replaceWith($('<a class="icon-followed" href="javascript:;"><em></em>已关注</a>'));
+					})
+                })
+            });
+        });
+    });
+</script>
+{=insert name="radio_footer"=}
+<script type="text/javascript">
+        var isIE = !-[1,];
+        if(isIE){
+            try{
+                var swf = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+            }
+            catch(e){
+                var noFalshNode=document.createElement('a');
+                noFalshNode.id='noFlash';
+                noFalshNode.href='http://get.adobe.com/cn/flashplayer/?no_redirect';
+                noFalshNode.target='_blank';
+                noFalshNode.innerHTML='<div class="text"><div>';
+
+                var closeNode=document.createElement('a');
+                closeNode.className="close";
+                closeNode.href="javascript:;";
+                noFalshNode.appendChild(closeNode);
+                closeNode.onclick=function(){
+                    this.parentNode.parentNode.removeChild(this.parentNode);
+                };
+
+                document.body.insertBefore(noFalshNode,document.body.firstChild);
+            }
+        }
+        else {
+            try{
+                var swf = navigator.plugins['Shockwave Flash'];
+                if(swf == undefined){
+                    var noFalshNode=document.createElement('a');
+                    noFalshNode.id='noFlash';
+                    noFalshNode.href='http://get.adobe.com/cn/flashplayer/?no_redirect';
+                    noFalshNode.target='_blank';
+                    noFalshNode.innerHTML='<div class="text"><div>';
+
+                    var closeNode=document.createElement('a');
+                    closeNode.className="close";
+                    closeNode.href="javascript:;";
+                    noFalshNode.appendChild(closeNode);
+                    closeNode.onclick=function(){
+                        this.parentNode.parentNode.removeChild(this.parentNode);
+                    };
+                    
+                    document.body.insertBefore(noFalshNode,document.body.firstChild);
+                }
+            }
+            catch(e){
+                var noFalshNode=document.createElement('a');
+                noFalshNode.id='noFlash';
+                noFalshNode.href='http://get.adobe.com/cn/flashplayer/?no_redirect';
+                noFalshNode.target='_blank';
+                noFalshNode.innerHTML='<div class="text"><div>';
+
+                var closeNode=document.createElement('a');
+                closeNode.className="close";
+                closeNode.href="javascript:;";
+                noFalshNode.appendChild(closeNode);
+                closeNode.onclick=function(){
+                    this.parentNode.parentNode.removeChild(this.parentNode);
+                };
+                
+                document.body.insertBefore(noFalshNode,document.body.firstChild);
+            }
+        }
+</script>
+</body>
+</html>

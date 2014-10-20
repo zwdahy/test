@@ -1,0 +1,46 @@
+{if $area_live_type == 'hot'}
+	<input type="hidden" name="hot_changetime" value="{$changetime}"/>
+	{if !empty($area_live_pinfo)}
+	<div node-type="radiolist" class="lf_ulScorllWp">
+		<ul class="hotRanking_ls" node-type="radioul">
+			{foreach item=item key=key from=$area_live_pinfo}
+			{if !empty($item.pname)}
+			<li class="{if $key == $area_live_pinfo_count-1}end{elseif $key % 2 == 1}odd{/if}">
+				<a href="{$item.pinfo.radio_url}?source=radio_hot_live" target="_blank">			
+					<em class="time_b">{$item.pinfo.date.begintime}-{$item.pinfo.date.endtime}</em>
+					<p class="p_list"><span>{$item.pname}</span><span>（{$item.pinfo.radio_name}）</span></p>
+				</a>			
+			</li>		
+			{/if}
+			{/foreach}
+		</ul>
+	</div>
+	{else}
+	<div class=" prompt_orgwp prompt_sm"> <span class="ico_radio ico_orgalert">当前时段没有正在直播的热门节目</span> </div>
+	{/if}
+{elseif $area_live_type == 'live'}
+	<input type="hidden" name="live_changetime" value="{$changetime}"/>
+	{if !empty($area_live_pinfo)}
+	<div node-type="radiolist" class="lf_ulScorllWp">
+		<ul class="hotRanking_ls" node-type="radioul">
+			{foreach item=item key=key from=$area_live_pinfo}
+			{if !empty($item.program_name)}		
+			<li class="{if $key == $area_live_pinfo_count-1}end{elseif $key % 2 == 1}odd{/if}">
+				<a href="{$item.radio_url}?source=radio_live_program" target="_blank">			
+					<em class="time_b">{$item.begintime}-{$item.endtime}</em>
+					<p class="p_list"><span>{$item.program_name}</span><span>（{$item.name}）</span></p>
+				</a>			
+			</li>		
+			{/if}
+			{/foreach}
+		</ul>
+	</div>
+	{else}
+	<div class=" prompt_orgwp prompt_sm"> <span class="ico_radio ico_orgalert">本地区当前时段没有正在直播的节目</span> </div>
+	{/if}
+{/if}
+{if $area_live_pinfo_count > 10}
+<div node-type="scrollBar" class="scrollBar">
+	<span node-type="dragBar" style="top:0px"><em node-type="slid" style="padding-top:{math equation="x / y" x=2350 y= $area_live_pinfo_count}px"></em></span>
+</div>
+{/if}

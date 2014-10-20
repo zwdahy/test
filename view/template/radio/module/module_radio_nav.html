@@ -1,0 +1,55 @@
+{if $smarty.const.SAPPS_VERSION eq 'V4'}
+	<div id="weibo_top_public"></div>
+	<script src="{$smarty.const.SAPPS_JS_PATH_V4}/home/js/public/top.js?version={$js_css_version}"></script>
+	{literal}
+	<script type="text/javascript">
+	var $TrayConfig = {};
+	{/literal}
+	{if $pid > 0}
+	$TrayConfig['pid'] = '{$pid}';
+	{/if}
+	{literal}
+	$TrayConfig['uid'] = "{/literal}{$useruid}{literal}";
+	$TrayConfig['name'] = "{/literal}{$username}{literal}";
+	$TrayConfig['islogin'] = {/literal}{$islogin}{literal};
+	$TrayConfig['page'] = 'app';
+	$TrayConfig['backurl'] = '{/literal}{$r}?rnd={$timestamp}{literal}';
+	$TrayConfig['icon'] = "{/literal}{$portrait}";	
+	{if $verify eq 1}
+	$TrayConfig['verify'] = "1";
+	$TrayConfig['lang'] = 'zh-cn'
+	{/if}
+	{literal}
+	WBtopPublic.init($TrayConfig);
+	</script>
+	{/literal}
+{else}
+	{literal}
+	<!--线上导航-->
+	<script type="text/javascript" src="{/literal}{$smarty.const.RADIO_STATIC_PATH}{literal}js/yunying_top.js?version={/literal}{$js_css_version}{literal}"></script>
+	<!--线上导航-->
+	<script type="text/javascript">
+		(function() {
+		
+		var TrayUserName = '{/literal}{$username}{literal}';
+		var TrayUID = '{/literal}{$useruid}{literal}';
+		var TrayLogin = {/literal}{$islogin}{literal};	
+		var TrayCONFIG = {};
+		{/literal}
+		{if $pid > 0}
+		TrayCONFIG['pid'] = '{$pid}';
+		{/if}
+		{literal}		
+		TrayCONFIG['uid'] = TrayUID;
+		TrayCONFIG['name'] = TrayUserName;
+		TrayCONFIG['isLogin'] = TrayLogin;
+		TrayCONFIG['isNotice'] = true;
+		TrayCONFIG["isWidthScreen"] = true;
+		scope["isWidthScreen"] = true;
+		TrayCONFIG['logoutUrl'] = '{/literal}{$logoutUrl}{literal}';
+		TrayCONFIG['backurl'] = '{/literal}{$r}?rnd={$timestamp}{literal}';
+		WBTopTray.init(TrayCONFIG);
+		})();
+	</script>
+	{/literal}
+{/if}

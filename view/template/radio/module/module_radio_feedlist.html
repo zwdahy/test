@@ -1,0 +1,107 @@
+<!--列表-->
+{if !empty($list)}
+<ul class="MIB_feed radio_feedls" id='feed_list'>
+	{foreach item=item key=key name=interact from=$list}
+	<li class="MIB_linedot_l">
+		<div class="head_pic">
+			<a href="{$item.user.link_url}" target="_blank"><img imgtype="head" uid="{$item.uid}" title="{$item.nick}" src="{$item.icon}"></a>
+		</div>
+		
+		<div class="MIB_feed_c">
+			<p type="1" mid="{$item.mid}" class="sms">
+				<a title="{$item.nick}" href="{$item.user.link_url}" target="_blank">{$item.nick}
+					{if $item.user.user_type neq 'user'}<img title="{if $item.user.user_type eq 'vip'}新浪认证{elseif $item.user.user_type eq 'vip_blue'}企业认证{else}微博达人{/if}" class="small_icon {$item.user.user_type}" src="http://img.t.sinajs.cn/t4/style/images/common/transparent.gif" />{/if}					
+				</a>
+				：{$item.content.text}
+			</p>
+			{if $item.rt}
+			<!--add 0916-->
+			<div class="MIB_assign">
+				<div class="MIB_asarrow_l"></div>
+				<div class="MIB_assign_t"></div>
+					<div class="MIB_assign_c MIB_txtbl"> 
+						<p type="2" mid="{$item.rt.rootmid}" class="source">
+							<a href="{$item.rt.rootuser.link_url}" target="_blank">@{$item.rt.rootuser.name}
+								{if $item.rt.rootuser.user_type neq 'user'}<img title="{if $item.rt.rootuser.user_type eq 'vip'}新浪认证{elseif $item.rt.rootuser.user_type eq 'vip_blue'}企业认证{else}微博达人{/if}" class="small_icon {$item.rt.rootuser.user_type}" src="http://img.t.sinajs.cn/t4/style/images/common/transparent.gif" />{/if}								
+							</a>
+							：{$item.rt.text}
+							<span class="source_att MIB_linkbl"><a href="{getUidUrl uid=$item.rt.rootuid mid=$item.rt.rootid domainType=$smarty.const.DOMAIN_TYPE}" target="_blank"><strong lang="CL1005">原文转发</strong>{if $item.rt.rootrtnum}<strong type="rttCount" rid="{$item.rt.rootmid}">({$item.rt.rootrtnum})</strong>{/if}</a><span class="MIB_line_l">|</span><a href="{getUidUrl uid=$item.rt.rootuid mid=$item.rt.rootid domainType=$smarty.const.DOMAIN_TYPE}" target="_blank"><strong lang="CC0603">原文评论</strong>{if $item.rt.rootcmtnum}<strong type="commtCount" rid="{$item.rt.rootmid}">({$item.rt.rootcmtnum})</strong>{/if}</a></span>
+						</p>
+						{if $item.content.pid}
+						<div id="prev_{$item.mid}" class="feed_preview">
+							<div class="feed_img">
+								<a href="javascript:void(0);" onclick="App.scaleImg(this,'{$item.content.pid}',true);">
+									<img class="imgicon" src="{$item.content.pic}">
+								</a>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="blogPicOri" id="disp_{$item.mid}" style="display: none;"> </div>
+						{/if}
+					</div>
+					<div class="MIB_assign_b"></div>
+			</div>
+			<!--/add 0916-->
+			{else}
+			{if $item.content.pid}
+			<div class="feed_preview" id="prev_{$item.mid}">
+				<div class="feed_img">
+					<a onclick="App.scaleImg(this,'{$item.content.pid}');" href="javascript:void(0);">
+						<img src="{$item.content.pic}" class="imgicon">
+					</a>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div id="disp_{$item.mid}" class="MIB_assign" style="display: none;"></div>
+			{/if}
+			{/if}
+			<div class="feed_att MIB_linkbl MIB_txtbl">
+				<div class="lf">
+					<cite>
+					<a href="{getUidUrl uid=$item.uid mid=$item.mblogid domainType=$smarty.const.DOMAIN_TYPE}" target="_blank"><strong>{$item.created_at}</strong></a>
+					</cite>
+					<strong lang="CL1006">来自</strong><cite>{$item.source_link|replace:'http://radio.weibo.com/':'javascript:;'}</cite>
+				</div>
+				<div class="rt">
+					
+					<a href="javascript:void(0)" onclick="App.ModForward('{$item.mblogid}','{if empty($item.rt.encode_text)}{$item.content.encode_text}{else}{$item.rt.encode_text}{/if}',0,this,'num_{$item.mid}','{$item.nick}','{if !empty($item.rt.encode_text)}{$item.content.old_text}{/if}','{$currUserInfo.name}')" initbloger="{if $item.rt}{$item.rt.rootuser.uid}{else}{$item.uid}{/if}" lastforwardername="{$item.nick}" lastforwarder="{$item.uid}" initmid="{$item.rt.rootid}" lastmid="{$item.mblogid}"><strong>转发</strong><strong  id="num_{$item.mid}">{if $item.rtnum}({$item.rtnum}){/if}</strong></a>
+					<span class="MIB_line_l">|</span>
+					<a href="javascript:void(0)" onclick="App.addfavorite_miniblog('{$item.mblogid}', '{$item.uid}')"><strong>收藏</strong></a>
+					<span class="MIB_line_l">|</span>
+					<a id="_comment_count_miniblog2_{$item.mid}" href="javascript:void(0)" onclick ="scope.loadCommentByRid('{$item.uid}', 'miniblog2', '新浪微博', '{$item.mid}', '{$item.content.encode_text}', '', '', 1, 0, 1);" ><strong>评论</strong><strong>{if $item.cmtnum}({$item.cmtnum}){/if}</strong></a>
+				</div>
+				<div id="_comment_list_miniblog2_{$item.mid}"></div>
+			</div>
+		</div>
+	</li>
+	{/foreach}
+</ul>
+<!--/列表-->
+<div class="MIB_bobar">
+	<!--返回顶部-->
+	<div class="ftop lf"><a href="javascript:scroll(0,0)"><img class="small_icon returntop" src="{$smarty.const.GLOBAL_CSS_PATH_V3}/images/common/transparent.gif" title="">返回顶部</a></div>
+	<!--返回顶部-->
+	<!--翻页-->
+	<div class="fanye MIB_txtbl rt">
+		{if $pageinfo.totalpage > 1}	
+		{if $pageinfo.pagenum != 1}
+		<a class="btn_num btn_numWidth" href="javascript:void(0)" onclick="App.scrollToTarget($E('publish_editor'),180);findPage({$pageinfo.pagenum-1}, '{$rid}', '{$type}','feedlist');"><em>上一页</em></a>
+		{/if}
+	    {foreach from=$pagelist item=list}
+	    {if $list.url=="" || $list.num == $pageinfo.pagenum}<span>{$list.num}</span>
+	    {else}<a class="btn_num" href="javascript:void(0)" onclick="App.scrollToTarget($E('publish_editor'),180);findPage({$list.num}, '{$rid}', '{$type}','feedlist');"><em>{$list.num}</em></a>
+	    {/if}
+	    {/foreach}
+		{if $pageinfo.pagenum < $pageinfo.totalpage}
+		<a class="btn_num btn_numWidth" href="javascript:void(0)" onclick="App.scrollToTarget($E('publish_editor'),180);findPage({$pageinfo.pagenum+1}, '{$rid}', '{$type}','feedlist');"><em>下一页</em></a>
+		{/if}
+		{/if}
+		{if $more > 0 && $type eq 'user_feed'}
+			<a href="{$smarty.const.T_URL}/k/{$urlkeyword}" target="_blank" style="margin-left:10px;">查看更多<em>&gt;&gt;</em></a>
+		{/if}
+	</div>
+	<!--翻页-->
+</div>
+{else}
+<div class=" prompt_orgwp prompt_sm"><span class="ico_radio ico_orgalert">暂时没有数据</span> </div>
+{/if}

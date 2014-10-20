@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta http-equiv=X-UA-Compatible content=IE=EmulateIE7 />
+<META NAME="Keywords" CONTENT="微电台,微博电台,在线广播,新浪微博电台,音乐电台,全国电台 ">
+<META NAME="Description" CONTENT="微电台是由新浪微博开发的一款在线电台产品，在微电台中可收听全国百余家地方电台。微电台突破了以往收听广播的地域及终端限制，也改变了用户被动收听广播的习惯，微博用户可在收听微电台的同时，与主持人和网友进行微博互动。 "><title>{$page_title}</title>
+<title>{$page_title}</title>
+{insert name="radio_globaljs" cuid=$cuid radioInfo = $radioInfo from = 1}
+<script type="text/javascript" src="http://www.sinaimg.cn/dy/deco/radio/1.1.6/js/yunying/radio/news.js"></script>
+</head>
+<body>
+{insert name="radio_topjs" cuid=$cuid radioInfo = $radioInfo from=1}
+<div class="radio_nC">
+	<!--线上二级导航-->
+	<div class="radio_header">
+		<div class="radio_logo"><a href="http://radio.weibo.com/">微电台</a>
+			<h2>电台新闻</h2>
+		</div>
+		<div class="radio_lnk">
+			<a href="/">微电台首页</a><em class="gray_line">|</em><a href="/rank" target="_blank">微电台排行榜</a>
+		</div>
+	</div>
+	<!--/线上二级导航-->
+	<!--内容-->
+	<div class="news_ContWp clearFix">
+		<div id="R_NEWS_List_Wrap">
+		</div>
+		<div id="R_NEWS_Pager" class="pager_a"></div>
+	</div>
+	<!--/内容-->
+<!--尾-->
+	<script type="text/javascript" src="{$smarty.const.RADIO_STATIC_PATH}js/footer_init.js?version={$js_css_version}"></script>
+	<!--/尾-->
+</div>
+{insert name="radio_sudajs" version=$js_css_version}
+</body>
+</html>

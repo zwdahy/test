@@ -1,0 +1,92 @@
+<!-- 节目列表 -->
+<div id="program_list">
+	<!-- 上边框 -->
+	<!-- \上边框 -->
+	{if !empty($program_info) && $program_visible==2}
+	  <div class="tab_programWp">
+		<ul class="tab_week_list">
+			  <!-- 当前星期加class="cur" -->
+			  <li action-type="tab" action-data="index=0&tabact=tab_week_list" {if $today eq 1}class="cur"{/if}><a href="javascript:void(0)">周一</a></li>
+			  <li action-type="tab" action-data="index=1&tabact=tab_week_list" {if $today eq 2}class="cur"{/if}><a href="javascript:void(0)">周二</a></li>
+			  <li action-type="tab" action-data="index=2&tabact=tab_week_list" {if $today eq 3}class="cur"{/if}><a href="javascript:void(0)">周三</a></li>
+			  <li action-type="tab" action-data="index=3&tabact=tab_week_list" {if $today eq 4}class="cur"{/if}><a href="javascript:void(0)">周四</a></li>
+			  <li action-type="tab" action-data="index=4&tabact=tab_week_list" {if $today eq 5}class="cur"{/if}><a href="javascript:void(0)">周五</a></li>
+			  <li action-type="tab" action-data="index=5&tabact=tab_week_list" {if $today eq 6}class="cur"{/if}><a href="javascript:void(0)">周六</a></li>
+			  <li action-type="tab" action-data="index=6&tabact=tab_week_list" {if $today eq 7}class="cur"{/if}><a href="javascript:void(0)">周日</a></li>
+			</ul>
+		</div>
+	  <!-- \上边框 -->
+	  {foreach item=item key=key from=$program_week}
+	    <div class="program_show" name="tab_week_list" {if $item.today eq 1}{else}style="display:none;"{/if}>
+			<div node-type="radiolist" class="prm_contList">
+			  <ul class="prm_showzs" node-type="radioul">
+					{foreach item=aitem key=akey from=$item.program_info}
+					<li class="{if $aitem.now eq 1}cur{elseif $aitem.odd % 2 == 0}odd{/if}">
+					  <a action-data="index={$aitem.order}" action-type="scheduleDetail" href="javascript:;">{$aitem.begintime}-{$aitem.endtime}&nbsp《{$aitem.program_name}》</a>
+					</li>
+	
+					{/foreach}
+			  </ul>
+			</div>
+			{if $item.count > 5}
+				<div node-type="scrollBar" class="scrollBar_gr">
+					<span node-type="dragBar" style="top:0px"><em node-type="slid" style="padding-top:{math equation="x / y - 25" x=725 y= $program_info_count}px"></em></span>
+				</div>
+			{/if}
+		</div>
+			{/foreach}		
+		    {else}
+				<div class="alarm_wp"><span class="ico_rdoPlay ico_alert">本电台暂无节目单</span></div>
+			{/if}	
+		 </div>
+<!-- \节目列表 -->
+
+<!-- 节目详情 -->
+<div id="program_detail" style="display:none;">
+	{foreach item=item key=key from=$program_info}
+	<div class="program_show" style="display:none;">
+		<div class="prm_contList" node-type="radiolist">			
+			<div class="personPm_show clearFix">
+				{if !empty($item.pic_path)}
+				<div class="lfImg_ls">
+					<img src="{$item.pic_path}" class="img">
+				</div>
+				{/if}
+				<div class="rtInfo_ls">
+					<p class="tit_p">{$item.name}</p>
+					{foreach item=aitem key=akey from=$item.showtime}
+						{if $akey == 0}<p class="sq_time_box"><span class="time_ls">{$aitem}</span>{if $item.showtime_count > 1}<span class="viewTime_sp"><a href="javascript:;" action-type="scheduleSeeTime" class="ico_rdoPlay ico_viewTime">查看时间</a><span action-type="scheduleSeeTime" class="viewTime_show" style="display:none;">{foreach item=bitem key=bkey from=$item.showtime}{$bitem}<br>{/foreach}</span></span>{/if}</p>{/if}
+					{/foreach}
+				</div>
+			</div>
+			{if !empty($item.intro)}
+			<div class="txt_pmshow">{$item.intro}</div>
+			{/if}
+			{if !empty($item.dj_info)}
+			<div class="djShow_wp clearFix">
+				<h3 class="dj_tit">节目DJ</h3>			
+				{foreach item=aitem key=akey from=$item.dj_info}
+				<a href="{$aitem.url}" target="_blank"><img action-type="namecard" action-data="uid={$aitem.uid}&param=uid&position=bottom" width="30" height="30" class="dj_img" src="{$aitem.userinfo.profile_image_url}"></a>
+				{/foreach}
+			</div>
+			{/if}			
+		</div>
+		<div node-type="scrollBar" class="scrollBar_gr">
+			<span node-type="dragBar" style="position:relative;top:0px;"><em style="padding-top:30px;" node-type="slid"></em></span>
+		</div>
+	</div>	
+	{/foreach}
+	<!-- 下边框 -->			
+	<div class="page_programbtm">
+		<span><a action-type="scheduleList" href="javascript:;">全部节目</a></span>
+		{if $program_info_count > 1}
+		<div class="page_ls">
+			<a class="ico_rdoPlay ico_pageLeft" href="javascript:;" id="pre_detail"></a>		
+			<em id="detail_index">1</em>/{$program_info_count}
+			<a class="ico_rdoPlay ico_pageRight" href="javascript:;" id="next_detail"></a>		
+		</div>
+		{/if}
+	</div>
+	<!-- \下边框 -->
+</div>
+<!-- \节目详情 -->

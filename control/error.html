@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="X-Ua-Compatible" content="IE=EmulateIE7" />
+<title>新浪高考大讲座</title>
+<style type="text/css"> 
+body{ padding:0;margin:0;font:normal 14px/35px "宋体"; color:#070707;background:#ffffff;}
+.content{width:450px;height:269px;background:url(http://www.sinaimg.cn/edu/228/2014/0122/U4360P42T228D2296F7182DT20140327175709.jpg) no-repeat; text-align:center; position:absolute;	top:50%;left:50%; margin:-140px 0 0 -225px;padding-top:67px;}
+span.red{ color:#bb2e31}
+span.jin{ color:#4a2405}
+a {text-decoration:none;}
+</style>
+</head>
+
+<body>
+<div class="content">
+<p>你还未报名参加此次讲座，新浪网友<span class="red">免费参加</span>，请登录报名!</p>
+<p><span id="time">5</span><span class="jin">秒钟后跳转到</span>活动报名页面</p>
+<p><a href="http://zhiyuan.edu.sina.com.cn/index.php?p=zhiyuan&s=activity&a=view">点击直接跳转</a></p>
+</div>
+</body>
+<script language="JavaScript" type="text/javascript">
+	function delayURL(url) {
+		var delay = document.getElementById("time").innerHTML;
+		if(delay > 0) {
+			delay--;
+			document.getElementById("time").innerHTML = delay;
+		} else {
+			window.top.location.href = url;
+		}
+		setTimeout("delayURL('" + url + "')", 1000);
+	}
+</script>
+<script type="text/javascript">
+delayURL("http://zhiyuan.edu.sina.com.cn/index.php?p=zhiyuan&s=activity&a=view");
+</script>
+</html>
+

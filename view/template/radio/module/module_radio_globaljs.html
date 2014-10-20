@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="微电台,微博电台,在线广播,新浪微博电台,音乐电台,全国电台 " />
+    <meta name="description" content="微电台是由新浪微博开发的一款在线电台产品，在微电台中可收听全国百余家地方电台。微电台突破了以往收听广播的地域及终端限制，也改变了用户被动收听广播的习惯，微博用户可在收听微电台的同时，与主持人和网友进行微博互动。 " />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>{=$page_title=}</title>
+	<link rel="stylesheet" href="{=$smarty.const.RADIO_CSS_PATH=}all.css"/>
+    <link href="http://img.t.sinajs.cn/t4/style/css/module/global/out_frame.css?version=201312101813" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="http://weibo.com/favicon.ico" mce_href="http://weibo.com/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="http://i.sso.sina.com.cn/js/ssologin.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://i.sso.sina.com.cn/js/outlogin_layer.js" charset="utf-8"></script>
+	<script charset="utf-8" src="{=$smarty.const.RADIO_JS_PATH_V2=}require.js"></script>
+    <!--请注意看注释，选择相应编码js版本-->
+    <script type="text/javascript" src="{=$smarty.const.RADIO_JS_PATH=}config.js"></script>
+    <script type="text/javascript">
+		var $CONFIG = {
+			$uid          : "{=$curruserinfo.idstr=}",
+			$from         : "0",
+			$pic          : "{=$smarty.const.RADIO_ICON_PATH=}",
+			$pid          : "{=$smarty.const.RADIO_ICON_PID=}",       
+			$isLogin      : "{=$islogin=}",
+			$faceIcons    : [{"icon":"\u8db3\u7403","value":"[\u8db3\u7403]","src":"basic\/football.gif"},{"icon":"\u54e8\u5b50","value":"[\u54e8\u5b50]","src":"basic\/shao.gif"},{"icon":"\u7ea2\u724c","value":"[\u7ea2\u724c]","src":"basic\/redcard.gif"},{"icon":"\u9ec4\u724c","value":"[\u9ec4\u724c]","src":"basic\/yellowcard.gif"},{"icon":"\u54c8\u54c8","value":"[\u54c8\u54c8]","src":"basic\/laugh.gif"},{"icon":"\u5475\u5475","value":"[\u5475\u5475]","src":"basic\/smile.gif"},{"icon":"\u8870","value":"[\u8870]","src":"basic\/cry.gif"},{"icon":"\u6c57","value":"[\u6c57]","src":"basic\/sweat.gif"},{"icon":"\u7231\u4f60","value":"[\u7231\u4f60]","src":"basic\/love.gif"},{"icon":"\u563b\u563b","value":"[\u563b\u563b]","src":"basic\/tooth.gif"},{"icon":"\u54fc","value":"[\u54fc]","src":"basic\/hate.gif"},{"icon":"\u5fc3","value":"[\u5fc3]","src":"basic\/heart.gif"},{"icon":"\u6655","value":"[\u6655]","src":"basic\/dizzy.gif"},{"icon":"\u6012","value":"[\u6012]","src":"basic\/angry.gif"},{"icon":"\u86cb\u7cd5","value":"[\u86cb\u7cd5]","src":"basic\/cake.gif"},{"icon":"\u82b1","value":"[\u82b1]","src":"basic\/flower.gif"},{"icon":"\u6293\u72c2","value":"[\u6293\u72c2]","src":"basic\/crazy.gif"},{"icon":"\u56f0","value":"[\u56f0]","src":"basic\/sleepy.gif"},{"icon":"\u5e72\u676f","value":"[\u5e72\u676f]","src":"basic\/cheer.gif"},{"icon":"\u592a\u9633","value":"[\u592a\u9633]","src":"basic\/sun.gif"},{"icon":"\u4e0b\u96e8","value":"[\u4e0b\u96e8]","src":"basic\/rain.gif"},{"icon":"\u6cea","value":"[\u6cea]","src":"basic\/sad.gif"},{"icon":"\u6708\u4eae","value":"[\u6708\u4eae]","src":"basic\/moon.gif"},{"icon":"\u732a\u5934","value":"[\u732a\u5934]","src":"basic\/pig.gif"},{"icon":"\u8721\u70db","value":"[\u8721\u70db]","src":"basic\/candle.gif"},{"icon":"\u4f24\u5fc3","value":"[\u4f24\u5fc3]","src":"basic\/unheart.gif"},{"icon":"\u98ce\u6247","value":"[\u98ce\u6247]","src":"basic\/fan.gif"},{"icon":"\u51b0\u68cd","value":"[\u51b0\u68cd]","src":"basic\/ice.gif"},{"icon":"\u897f\u74dc","value":"[\u897f\u74dc]","src":"basic\/watermelon.gif"}],
+			$severtime    : {=$smarty.now=},
+			$webim        : 1,
+			$pageConfig   : {
+				logoutUrl : "$backurl",
+				backurl   : "$backurl",
+				pid       : "15002"
+			},
+			entry: "weidiantai",
+			regURL: "http://radio.weibo.com",
+			googleanaly     : "UA-25532668-2"       
+		};
+		var scope={
+			{=if $rid=}
+				rid:	"{=$rid=}",
+				program_visible:	"{=$radio_info.program_visible=}",
+				domain:	"{=$radio_info.domain=}",
+				radioname:	"{=$radio_info.name=}",
+				program_name:	"{=$program_now.program_name=}",
+				topic:	"{=$radio_info.tag=}",
+			{=else=}
+				rid:	"",
+			{=/if=}
+				classification:	{=$classification=},
+				program_type:	{=$program_type=},
+				program_type_now:	{=$program_type_now=},
+				servertime:	{=$smarty.now*1000=},
+				province: {=$province=},
+				province_id:	{=$curruserinfo.province=},
+			{=if $curruserinfo.uid=}
+				uid:	"{=$curruserinfo.uid=}",
+				username:	"{=$curruserinfo.name=}",
+				power:	"{=$curruserinfo.power=}",
+			{=/if=}
+				islogin:	{=$islogin=}
+        };
+    </script>
+</head>
+<body>
+<!--顶部托盘 begin-->
+
+<div id="weibo_top_public"></div>
+<script src="http://js.t.sinajs.cn/t6/home/js/pl/top/topInit.js"></script>
+<script>
+(function(){
+	WBtopGlobal && WBtopGlobal.init({
+		{=if $cuid=}
+		"name":"{=$curruserinfo.name=}",
+		"onick":"{=$curruserinfo.name=}",
+		"uid":{=$cuid=}, 
+		"islogin":{=$islogin=},
+		"pid" : 15002,
+		"lang":"zh-cn",
+		{=/if=}
+		"rbackurl":"http%3A%2F%2Fradio.weibo.com%2Feditprogram?rid={=$rid=}%26rnd={=$smarty.now=}"
+	});
+})()
+</script>
+<!--
+<div id="weibo_top_public"></div>
+<script type="text/javascript" src="http://js.t.sinajs.cn/t4/home/js/public/topInit.js?version=201312101813"></script>
+<script type="text/javascript">
+	(function() {
+		WBtopGlobal && WBtopGlobal.init({
+			{=if $cuid=}
+				"name":"{=$curruserinfo.name=}",
+				"onick":"{=$curruserinfo.name=}",
+				"uid":"{=$curruserinfo.uid=}",
+				"icon":"{=$curruserinfo.profile_image_url=}",
+				"verified":"{=$curruserinfo.verified=}",
+				"verify":{=$curruserinfo.verified_type=},
+				"islogin":"1",
+			{=else=}
+				"islogin":"0",
+			{=/if=}
+				"lang":"{=$curruserinfo.lang=}",
+				"_wv":"{=$_wv=}",
+				"any":"&wvr=4",
+				"loginSuccessUrl":"{=$backurl=}",
+				"backurl": '{=$backurl=}',
+				"pid":"15002"
+		});
+	})();
+</script>
+-->

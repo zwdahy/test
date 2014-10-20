@@ -1,0 +1,108 @@
+{=insert name="radio_globaljs" rid=$rid page_title=$page_title=}
+<script type="text/javascript" src="http://js.t.sinajs.cn/t5/webim/js/loader.js?version={=$js_css_version=}"></script>
+<!--顶部托盘 end-->
+
+
+<div class="wrap list-management" style="padding-top: 90px;">
+{=*公告,目前暂且注释
+    <div class="notice">
+        <div class="notice-in udv-clearfix">
+            <div class="item">节目预告：今天10:00，范德彪做客中央人民广播电台音乐之声《只听好歌不</div>
+        </div>
+    </div>
+*=}
+    {=*
+        <div class="nav udv-clearfix">
+        <div class="logo">
+            <a href="http://radio.weibo.com"></a>
+        </div>
+        <ul>
+            <li class="current"><a href="http://radio.weibo.com" target="_blank">首页</a></li>
+            <li><a href="url" target="_blank">节目推荐</a></li>
+            <li><a href="http://radio.weibo.com/rank" target="_blank">排行榜</a></li>
+            <li><a href="http://radio.weibo.com/app" target="_blank">客户端</a></li>
+            <li><a href="http://radio.weibo.com/collection" target="_blank">我的电台</a></li>
+        </ul>
+        <!--focused-->
+        <form action="/" class="">
+            <input class="input" type="text" placeholder="电台、节目、DJ"/>
+            <input class="submit" type="submit" value=""/>
+        </form>
+    </div>
+    *=}
+    <div class="list-status udv-clearfix" id="list-status">
+        <div class="title">管理节目单</div>
+        <!--<div class="status"><span>节目单状态：</span><a class="hide hide-h" href="javascript:;">隐&nbsp;藏</a><a class="show" href="javascript:;">显&nbsp;示</a></div>-->
+    </div>
+    <script type="text/javascript">
+        requirejs(['lib'],function(){
+            requirejs(['list-status','$'],function(status){
+                $(document).ready(function(){
+                    status({
+                        ctr: $("#list-status"),
+                        visible: scope.program_visible
+                    });
+                });
+            });
+        });
+    </script>
+    <div class="channel udv-clearfix"><span class="name">{=$radioInfo.name=}</span><a class="back" target="_self" href="{=$radio_info.radio_url=}">返回电台</a><a href="http://www.sinaimg.cn/dy/deco/2014/0711/images/Readme.doc" target="_blank" class="download">节目单管理使用帮助下载</a></div>
+    <div id="list"></div>
+    <script type="text/javascript">
+        requirejs(['lib'],function(){
+            requirejs(['list-management','$'],function(list){
+                $(document).ready(function(){
+                    list({
+                        ctr: $("#list")
+                    });
+                });
+            });
+        });
+    </script>
+    <div class="side-btns" id="side-btns" style="visibility: hidden;">
+        <a class="back" href="javascript:;"></a>
+    </div>
+    <script type="text/javascript">
+        requirejs(['lib'],function(){
+            requirejs(['$','_'],function(){
+                $(document).ready(function(){
+                    function scrollTo(posY,time){
+                        $("html,body").animate({
+                            scrollTop:posY
+                        },time,'swing');
+                    }
+
+                    var $window=$(window);
+                    var fixedCtr=$("#side-btns");
+                    var scrollToTopBtn=fixedCtr.find('.back');
+                    fixedCtr.css({
+                        visibility:'hidden'
+                    });
+                    scrollToTopBtn.click(function(){
+                        scrollTo(0,500);
+                    });
+                    scrollToTopBtn.on('focus',function(){
+                        scrollToTopBtn.trigger('blur');
+                    });
+                    var backToTop=function(){
+                        var currentTop=$window.scrollTop();
+                        if(currentTop==0){
+                            fixedCtr.css({
+                                visibility:'hidden'
+                            });
+                        }else{
+                            fixedCtr.css({
+                                visibility:'visible'
+                            });
+                        }
+                    };
+                    backToTop= _.debounce(backToTop,200);
+                    $window.on('resize scroll',backToTop);
+                });
+            });
+        });
+    </script>
+</div>
+{=insert name="radio_footer"=}
+</body>
+</html>

@@ -1,0 +1,24 @@
+<div class="col-right">
+                <div class="s-rank">
+                    <div class="title">
+                        微电台收听榜
+                    </div>
+                    <div class="content">
+                        <ul>
+							{=if $radio_listen_rank=}
+							{=foreach from=$radio_listen_rank item=myitem name=myname=}
+                            <li class={=if $smarty.foreach.myname.iteration <=3=}"red udv-clearfix"{=else=}"udv-clearfix"{=/if=}>
+                                <div class="p-left">
+                                    <span>{=$smarty.foreach.myname.iteration=}</span>
+                                    <img src="{=$myitem.info.img_path=}" height="28" width="28" alt="{=$myitem.info.name=}"/>
+                                </div>
+                                <div class="p-right">
+                                    <a href="{=$myitem.info.radio_url=}" target="_blank">{=$myitem.info.name=}</a>
+                                </div>
+                            </li>
+							{=/foreach=}
+							{=/if=}
+                        </ul>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv=X-UA-Compatible content=IE=EmulateIE7 />
+<META NAME="Keywords" CONTENT="微电台,微博电台,在线广播,新浪微博电台,音乐电台,全国电台 ">
+<META NAME="Description" CONTENT="微电台是由新浪微博开发的一款在线电台产品，在微电台中可收听全国百余家地方电台。微电台突破了以往收听广播的地域及终端限制，也改变了用户被动收听广播的习惯，微博用户可在收听微电台的同时，与主持人和网友进行微博互动。 ">
+<title>{$page_title}</title>
+{insert name="radio_globaljs" cuid=$cuid radioInfo = $radioInfo from=1}
+</head>
+<body>
+{insert name="radio_topjs" cuid=$cuid radioInfo = $radioInfo from=1}
+<div class="radio_nC">
+
+	<!--线上二级导航-->
+	<div class="radio_header">
+		<div class="radio_logo">
+			<a href="{$smarty.const.RADIO_URL}">微电台</a>
+			<h2>使用帮助</h2>
+		</div>
+		<div class="radio_lnk">
+			<a href="{$smarty.const.RADIO_URL}">微电台首页</a><em class="gray_line">|</em><a href="/rank" target="_blank">微电台排行榜</a>
+		</div>
+	</div>
+	<!--/线上二级导航-->
+
+	<!--内容-->
+	<div class="help_ContWp clearFix">
+		<!--左侧页面-->
+		<div class="help_left">
+			 <dl class="help_Nav">
+			    <dt>微电台使用帮助</dt>
+			    <dd action-data="index=0&tabact=tab_help" action-type="tab" class="cur"><a href="javascript:;">如何切换地区，查看更多电台</a></dd>
+				<dd action-data="index=1&tabact=tab_help" action-type="tab"><a href="javascript:;">如何找到热门节目</a></dd>
+				<dd action-data="index=2&tabact=tab_help" action-type="tab"><a href="javascript:;">如何使用收藏电台功能</a></dd>
+				<dd action-data="index=3&tabact=tab_help" action-type="tab"><a href="javascript:;">如何与DJ互动</a></dd>
+				<dd action-data="index=4&tabact=tab_help" action-type="tab"><a href="javascript:;">为什么收听不了微电台</a></dd>
+				<dd action-data="index=5&tabact=tab_help" action-type="tab"><a href="javascript:;">移动终端如何收听</a></dd>
+				<dd action-data="index=6&tabact=tab_help" action-type="tab"><a href="javascript:;">如何联系合作和反馈意见</a></dd>
+			 </dl>
+			<div class="dotline_d"></div>
+			<!--右下角公共模块-->
+			{insert name="radio_rigth_corner" cuid=$cuid}
+		</div>
+		<!--\左侧页面-->
+		<!--右侧页面-->
+		<div class="help_right">
+			<!-- 如何切换地区，查看更多电台 -->
+			<div name="tab_help">
+				<div class="tit_rdohp">如何切换地区，查看更多电台</div>	
+ 				<div class="tit_rdosub">微电台首页</div>	
+ 				<div class="help_guide">
+	    			<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/changearea/1.jpg">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/changearea/2.jpg">
+ 				</div>	
+				<div class="tit_rdosub">电台播放页</div>	
+ 				<div class="help_guide">
+    				<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/changearea/3.jpg">
+ 				</div>		
+			</div>
+			<!-- \如何切换地区，查看更多电台 -->
+			<!-- 如何找到热门节目 -->
+			<div name="tab_help" style="display:none;">
+				<div class="tit_rdohp">如何找到热门节目</div>	
+				<div class="tit_rdosub">本地区节目</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/findhot/1.jpg">
+				</div>	
+				<div class="tit_rdosub">当前热门节目</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/findhot/2.jpg">
+				</div>	
+				<div class="tit_rdosub">上周热门节目排行榜</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/findhot/3.jpg">
+				</div>	
+				<div class="tit_rdosub">微电台收听榜</div>	
+				<div class="help_guide">
+   					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/findhot/4.jpg">
+				</div>	
+			</div>
+			<!-- \如何找到热门节目 -->
+			<!-- 如何使用收藏电台功能 -->
+			<div name="tab_help" style="display:none;">
+				<div class="tit_rdohp">如何使用收藏电台功能</div>	
+				<div class="tit_rdosub">收藏电台</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/collect/1.jpg">
+				</div>	
+				<div class="tit_rdosub">查看我收藏的电台</div>	
+				<div class="tit_rdosub_li">在微电台首页</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/collect/2.jpg">
+				</div>	
+				<div class="tit_rdosub_li">在电台播放页</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/collect/3.jpg">
+				</div>	
+				<div class="tit_rdosub">管理我收藏的电台</div>	
+				<div class="tit_rdosub_li">在微电台首页</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/collect/4.jpg">
+				</div>	
+				<div class="tit_rdosub_li">在微电台播放页</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/collect/5.jpg">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/collect/6.jpg">
+				</div>	
+				<div class="tit_rdosub_li">取消收藏</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/collect/7.jpg">
+				</div>	
+			</div>
+			<!-- \如何使用收藏电台功能 -->
+			<!-- 如何与DJ互动 -->
+			<div name="tab_help" style="display:none;">
+				<div class="tit_rdohp">如何与DJ互动</div>	
+				<div class="txt_helpls">在线DJ是指该电台当前正在播出节目的主持人DJ,在线DJ会通过微博或口播和微博网友互动。</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/interact/1.jpg">
+				</div>
+			</div>
+			<!-- \如何与DJ互动 -->
+			<!-- 为什么收听不了微电台 -->
+			<div name="tab_help" style="display:none;">
+				<div class="tit_rdohp">为什么收听不了微电台</div>	
+				<div class="txt_helpls">微电台需通过flash播放器播放，所以必须安装flashplayer后方可收听。flashplayer下载地址：<a href="http://get.adobe.com/cn/flashplayer/" target="_blank">http://get.adobe.com/cn/flashplayer/</a></div>
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/nosignal/1.jpg">
+					<div class="txt_helpls">* 因部分电台每周二的下午会进行设备维护，直播信号暂停，微电台接收不到直播信号所以无法播出节目。</div>	
+				</div>
+			</div>
+			<!-- \为什么收听不了微电台 -->
+			<!-- 移动终端如何收听 -->
+			<div name="tab_help" style="display:none;">				
+				<div class="tit_rdohp">移动终端如何收听</div>	
+				<div class="txt_helpls">浏览器中输入网址radio.weibo.com，选择电台名称即可进入播放页收听。目前支持IOS（iphone、 ipad）及Android系统。<br><br></div>	
+				<div class="tit_rdosub_FB">iPhone</div>
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/listen/1.jpg">
+				</div>	
+				<div class="tit_rdosub_FB">iPad</div>
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/listen/2.jpg">
+				</div>	
+				<div class="tit_rdosub_FB">Android</div>
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/listen/3.jpg">
+				</div>
+			</div>
+			<!-- \移动终端如何收听 -->
+			<!-- 如何联系合作和反馈意见 -->
+			<div name="tab_help" style="display:none;">
+				<div class="tit_rdohp">如何联系合作和反馈意见</div>	
+				<div class="help_guide">
+					<img alt="" src="http://timg.sjs.sinajs.cn/t36/yunyingstyle/images/special/radio_11/help/contact/1.jpg">
+				</div>
+			</div>
+			<!-- \如何联系合作和反馈意见 -->
+		</div>
+		<!--\右侧页面-->
+	</div>
+	<!--/内容-->
+	
+	<!--尾-->
+	<script type="text/javascript" src="{$smarty.const.RADIO_STATIC_PATH}js/footer_init.js?version={$js_css_version}"></script>
+	<!--/尾-->
+</div>
+{insert name="radio_sudajs" version=$js_css_version}
+</body>
+</html>
+
